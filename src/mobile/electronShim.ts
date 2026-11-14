@@ -377,6 +377,9 @@ const implemented: Api = {
 		window.dispatchEvent(new Event(OPEN_RECORDER_EVENT));
 	},
 	setRecordingState: async () => undefined,
+	waitForRecordingEditor: async () => ({}),
+	finishRecordingEditor: async () => undefined,
+	switchToEditor: async () => undefined,
 
 	// --- export ---
 	openExportStream: async (options?: { extension?: string }) => {
