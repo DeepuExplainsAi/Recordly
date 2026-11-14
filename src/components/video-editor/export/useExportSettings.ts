@@ -22,7 +22,7 @@ export function useExportSettings(
 	const [includeCaptionSidecar, setIncludeCaptionSidecar] = useState(
 		preferences.includeCaptionSidecar,
 	);
-	const [publishDestination, setPublishDestination] = useState(preferences.publishDestination);
+	const [publishDestination, setPublishDestination] = useState<typeof preferences.publishDestination>("local");
 	const [advancedExportSettings, setAdvancedExportSettings] = useState(
 		preferences.advancedExportSettings,
 	);

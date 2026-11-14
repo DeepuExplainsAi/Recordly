@@ -269,6 +269,7 @@ export function EditorExportMenu(props: Props) {
 										{uiText("ui.publish")}
 									</h2>
 									<TagGroup
+										className="hidden"
 										aria-label={uiText("ui.publishDestination")}
 										selectionMode="single"
 										disallowEmptySelection

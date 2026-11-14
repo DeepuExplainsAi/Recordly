@@ -224,7 +224,7 @@ export function EditorHeader(props: Props) {
 			</div>
 
 			<div className="editor-header-end flex min-w-0 items-center justify-self-end gap-1 md:gap-3">
-				<span className="hidden md:contents">
+				<span className="hidden">
 					<UpgradeButton
 						label={uiText("billing.upgradeButtonLabel", "Upgrade")}
 						variant="secondary"
@@ -257,7 +257,7 @@ export function EditorHeader(props: Props) {
 					</Button>
 				</div>
 				{SHOW_PRESETS_BUTTON && <EditorPresetMenu t={t} presets={presets} />}
-				<span className="hidden md:contents">
+				<span className="hidden">
 					<FeedbackDialog
 						showLabel={false}
 						className="h-9 w-9 min-w-9"
@@ -292,7 +292,7 @@ export function EditorHeader(props: Props) {
 					authToken={props.authToken}
 					accountId={props.accountId}
 				/>
-				<span className="hidden md:contents">
+				<span className="hidden">
 					{props.accountMenu}
 					<AppUpdateButton />
 				</span>

@@ -1,6 +1,5 @@
 import { useI18n as useUiLocale } from "@/contexts/I18nContext";
 import { type ComponentProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { EditorAnnouncementBanner } from "@/components/announcements/EditorAnnouncementBanner";
 import { OnboardingController } from "@/components/auth/OnboardingController";
 import { RecordlyAccountMenu } from "@/components/auth/RecordlyAccountMenu";
 import { RecordlySignInDialog, type SignInReason } from "@/components/auth/RecordlySignInDialog";
@@ -404,7 +403,6 @@ export function EditorShell(props: Props) {
 						accountId={auth.user?.id}
 						revealExportedFile={dialogActions.revealExportedFile}
 					/>
-					<EditorAnnouncementBanner />
 					<div
 						className="relative flex min-h-0 flex-1 flex-col"
 						onPointerDownCapture={(event) => {

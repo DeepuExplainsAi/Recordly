@@ -46,7 +46,7 @@ export function Dashboard(props: DashboardProps) {
 									</span>
 								</div>
 								<div className="flex items-center gap-3">
-									<span className="hidden md:contents">
+									<span className="hidden">
 										<UpgradeButton
 											label={uiText("billing.upgradeButtonLabel", "Upgrade")}
 											variant="secondary"
@@ -73,7 +73,7 @@ export function Dashboard(props: DashboardProps) {
 											</span>
 										</Button>
 									)}
-									<span className="hidden md:contents">
+									<span className="hidden">
 										<RecordlyAccountMenu
 											compact
 											placement="header"

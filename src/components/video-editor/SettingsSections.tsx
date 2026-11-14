@@ -24,6 +24,8 @@ export type SettingsSection =
 	| "files"
 	| "updates"
 	| "developer";
+/** Categories that need a desktop OS or the Recordly cloud; the Android build has neither. */
+const UNAVAILABLE_ON_MOBILE: SettingsSection[] = ["account", "updates", "shortcuts", "permissions"];
 const SettingsCategoryContext = createContext<SettingsSection | null>(null);
 
 export function useSettingsCategoryActive(category: SettingsSection) {
@@ -69,7 +71,9 @@ export function SettingsSections({
 	}, []);
 	const panel = useRef<HTMLDivElement>(null);
 	const available = categories.filter(
-		(category) => category !== "developer" || import.meta.env.DEV,
+		(category) =>
+			(category !== "developer" || import.meta.env.DEV) &&
+			!UNAVAILABLE_ON_MOBILE.includes(category),
 	);
 	const active = available.includes(selected) ? selected : available[0];
 	const CategoryList = narrow ? TabsList : HeroTabs.List;

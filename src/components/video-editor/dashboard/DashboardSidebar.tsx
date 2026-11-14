@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { FeedbackDialog } from "@/components/feedback/FeedbackDialog";
 import { Button } from "@/components/ui/button";
-import { ChatWarning, Cloud, GearSix, House, Plus } from "@/components/ui/icons";
+import { GearSix, House, Plus } from "@/components/ui/icons";
 import { useI18n as useUiLocale } from "@/contexts/I18nContext";
 import { FolderRow } from "./FolderRow";
 import { RecordNewButton } from "./RecordNewButton";
@@ -42,7 +40,6 @@ export function DashboardSidebar({
 	| "authToken"
 >) {
 	const { t: uiText } = useUiLocale();
-	const [feedbackOpen, setFeedbackOpen] = useState(false);
 	return (
 		<>
 			<aside
@@ -59,18 +56,6 @@ export function DashboardSidebar({
 					>
 						<House weight="fill" className="size-[18px]" />
 						{uiText("ui.home")}
-					</Button>
-					<Button
-						variant="ghost"
-						className={navClass(section === "shared")}
-						aria-current={section === "shared" ? "page" : undefined}
-						onClick={() => setSection("shared")}
-					>
-						<Cloud
-							weight={section === "shared" ? "fill" : "regular"}
-							className="size-[18px]"
-						/>
-						{uiText("ui.sharedLinks")}
 					</Button>
 				</nav>
 				<div className="mb-2 mt-9 hidden items-center justify-between pl-3 md:flex">
@@ -129,14 +114,6 @@ export function DashboardSidebar({
 					</div>
 					<Button
 						variant="ghost"
-						className={navClass(false)}
-						onClick={() => setFeedbackOpen(true)}
-					>
-						<ChatWarning weight="fill" className="size-[18px]" aria-hidden="true" />
-						{uiText("common.feedback.trigger", "Feedback")}
-					</Button>
-					<Button
-						variant="ghost"
 						className={navClass(section === "settings")}
 						aria-current={section === "settings" ? "page" : undefined}
 						onClick={() => openSettings()}
@@ -146,12 +123,6 @@ export function DashboardSidebar({
 					</Button>
 				</div>
 			</aside>
-			<FeedbackDialog
-				hideTrigger
-				open={feedbackOpen}
-				onOpenChange={setFeedbackOpen}
-				onSignIn={onSignIn}
-			/>
 		</>
 	);
 }

@@ -376,7 +376,7 @@ export function ExportSettingsMenu({
 						)}
 					</div>
 				)}
-				{billing?.status?.billing.plan !== "pro" && (
+				{false && (
 					<div className="space-y-1">
 						<p className="text-xs text-muted">
 							<Button
