@@ -46,12 +46,14 @@ export function Dashboard(props: DashboardProps) {
 									</span>
 								</div>
 								<div className="flex items-center gap-3">
-									<UpgradeButton
-										label={uiText("billing.upgradeButtonLabel", "Upgrade")}
-										variant="secondary"
-										size="sm"
-										className="h-9 gap-1.5"
-									/>
+									<span className="hidden md:contents">
+										<UpgradeButton
+											label={uiText("billing.upgradeButtonLabel", "Upgrade")}
+											variant="secondary"
+											size="sm"
+											className="h-9 gap-1.5"
+										/>
+									</span>
 									{props.editorTitle && (
 										<Button
 											variant="ghost"
@@ -71,20 +73,22 @@ export function Dashboard(props: DashboardProps) {
 											</span>
 										</Button>
 									)}
-									<RecordlyAccountMenu
-										compact
-										placement="header"
-										triggerLabel={uiText("ui.recordlyAccount")}
-										className="size-9 rounded-full"
-										onSignIn={props.onSignIn}
-										onSettings={model.openSettings}
-									/>
-									<AppUpdateButton />
+									<span className="hidden md:contents">
+										<RecordlyAccountMenu
+											compact
+											placement="header"
+											triggerLabel={uiText("ui.recordlyAccount")}
+											className="size-9 rounded-full"
+											onSignIn={props.onSignIn}
+											onSettings={model.openSettings}
+										/>
+										<AppUpdateButton />
+									</span>
 								</div>
 							</AppFrameHeader>
-							<div className="loading-content-enter flex min-h-0 flex-1">
+							<div className="loading-content-enter flex min-h-0 flex-1 flex-col md:flex-row">
 								<DashboardSidebar {...view} />
-								<Card className="app-frame-surface my-3 mr-3 flex min-h-0 min-w-0 flex-1 flex-col gap-0 overflow-hidden rounded-3xl bg-surface p-0 shadow-sm">
+								<Card className="app-frame-surface mx-2 mb-2 flex md:my-3 md:ml-0 md:mr-3 min-h-0 min-w-0 flex-1 flex-col gap-0 overflow-hidden rounded-3xl bg-surface p-0 shadow-sm">
 									{model.section !== "settings" && model.section !== "shared" && (
 										<>
 											<DashboardAnnouncements

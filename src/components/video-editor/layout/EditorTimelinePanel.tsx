@@ -60,8 +60,8 @@ export function EditorTimelinePanel(props: Props) {
 			ref={props.panelRef}
 			tabIndex={-1}
 			data-timeline-panel
-			className="outline-none flex flex-shrink-0 flex-col bg-transparent px-4 pb-4"
-			style={{ height: "calc(22% + 8px)", minHeight: 188, maxHeight: 288 }}
+			className="order-2 flex flex-shrink-0 flex-col bg-transparent px-2 pb-1 outline-none md:order-none md:px-4 md:pb-4"
+			style={{ height: "calc(22% + 8px)", minHeight: 150, maxHeight: 288 }}
 		>
 			<TimelineEditor
 				zoomPresentationOptions={props.zoomPresentationOptions}

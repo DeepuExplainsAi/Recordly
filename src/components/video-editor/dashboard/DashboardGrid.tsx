@@ -111,8 +111,8 @@ export function DashboardGrid({
 				data-scroll-shadow-mode={section === "settings" ? undefined : scrollFade}
 				className={
 					section === "settings"
-						? "dashboard-settings-page flex min-h-0 flex-1 flex-col overflow-hidden px-7 lg:px-10"
-						: "custom-scrollbar scroll-shadow scroll-shadow--vertical scroll-shadow--fade [--scroll-shadow-size:24px] min-h-0 flex-1 overflow-y-auto px-7 pb-10 lg:px-10"
+						? "dashboard-settings-page flex min-h-0 flex-1 flex-col overflow-hidden px-4 md:px-7 lg:px-10"
+						: "custom-scrollbar scroll-shadow scroll-shadow--vertical scroll-shadow--fade [--scroll-shadow-size:24px] min-h-0 flex-1 overflow-y-auto px-4 pb-10 md:px-7 lg:px-10"
 				}
 			>
 				{error && (

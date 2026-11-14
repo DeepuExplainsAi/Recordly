@@ -47,10 +47,10 @@ export function DashboardSidebar({
 		<>
 			<aside
 				aria-label={uiText("ui.libraryNavigation")}
-				className="flex min-h-0 w-48 shrink-0 flex-col bg-transparent px-4 pb-5 pt-3 lg:w-56"
+				className="flex shrink-0 flex-row flex-wrap items-center gap-2 bg-transparent px-3 pb-2 pt-2 md:min-h-0 md:w-48 md:flex-col md:flex-nowrap md:items-stretch md:gap-0 md:px-4 md:pb-5 md:pt-3 lg:w-56"
 			>
-				<RecordNewButton busy={busy} run={run} className="mb-5 w-full" />
-				<nav className="space-y-1">
+				<RecordNewButton busy={busy} run={run} className="min-h-11 flex-1 md:mb-5 md:w-full md:flex-none" />
+				<nav className="flex gap-1 md:block md:space-y-1">
 					<Button
 						variant="ghost"
 						className={navClass(section === "projects")}
@@ -73,7 +73,7 @@ export function DashboardSidebar({
 						{uiText("ui.sharedLinks")}
 					</Button>
 				</nav>
-				<div className="mb-2 mt-9 flex items-center justify-between pl-3">
+				<div className="mb-2 mt-9 hidden items-center justify-between pl-3 md:flex">
 					<h2 className="text-[13px] font-semibold tracking-tight text-foreground/80">
 						{uiText("ui.folders")}
 					</h2>
@@ -103,7 +103,7 @@ export function DashboardSidebar({
 						<Plus className="size-3.5" />
 					</Button>
 				</div>
-				<div className="min-h-0 flex-1 overflow-y-auto space-y-1">
+				<div className="hidden min-h-0 flex-1 space-y-1 overflow-y-auto md:block">
 					{folders.map((folder) => (
 						<FolderRow
 							key={folder.id}
@@ -123,8 +123,8 @@ export function DashboardSidebar({
 						/>
 					))}
 				</div>
-				<div className="flex min-h-0 flex-col gap-1 pt-6">
-					<div className="min-h-0 overflow-y-auto">
+				<div className="flex min-h-0 flex-col gap-1 md:pt-6">
+					<div className="hidden min-h-0 overflow-y-auto md:block">
 						<SidebarCards onSignIn={onSignIn} />
 					</div>
 					<Button

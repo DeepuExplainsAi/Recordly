@@ -223,13 +223,15 @@ export function EditorHeader(props: Props) {
 				</span>
 			</div>
 
-			<div className="editor-header-end flex min-w-0 items-center justify-self-end gap-3">
-				<UpgradeButton
-					label={uiText("billing.upgradeButtonLabel", "Upgrade")}
-					variant="secondary"
-					size="sm"
-					className="h-9 gap-1.5"
-				/>
+			<div className="editor-header-end flex min-w-0 items-center justify-self-end gap-1 md:gap-3">
+				<span className="hidden md:contents">
+					<UpgradeButton
+						label={uiText("billing.upgradeButtonLabel", "Upgrade")}
+						variant="secondary"
+						size="sm"
+						className="h-9 gap-1.5"
+					/>
+				</span>
 				<div className="flex items-center gap-1">
 					<Button
 						type="button"
@@ -255,11 +257,13 @@ export function EditorHeader(props: Props) {
 					</Button>
 				</div>
 				{SHOW_PRESETS_BUTTON && <EditorPresetMenu t={t} presets={presets} />}
-				<FeedbackDialog
-					showLabel={false}
-					className="h-9 w-9 min-w-9"
-					onSignIn={props.onRequestFeedbackSignIn}
-				/>
+				<span className="hidden md:contents">
+					<FeedbackDialog
+						showLabel={false}
+						className="h-9 w-9 min-w-9"
+						onSignIn={props.onRequestFeedbackSignIn}
+					/>
+				</span>
 				<EditorExportMenu
 					t={t}
 					videoPlaybackRef={props.videoPlaybackRef}
@@ -288,8 +292,10 @@ export function EditorHeader(props: Props) {
 					authToken={props.authToken}
 					accountId={props.accountId}
 				/>
-				{props.accountMenu}
-				<AppUpdateButton />
+				<span className="hidden md:contents">
+					{props.accountMenu}
+					<AppUpdateButton />
+				</span>
 			</div>
 		</AppFrameHeader>
 	);

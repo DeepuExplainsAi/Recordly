@@ -94,8 +94,8 @@ export function DashboardFilters({
 
 	return (
 		<>
-			<div className="flex flex-wrap items-center gap-3 px-7 pb-7 lg:px-10">
-				<div className="flex flex-wrap gap-2" aria-label={uiText("ui.timeFilters")}>
+			<div className="flex items-center gap-2 overflow-x-auto px-4 pb-4 md:flex-wrap md:gap-3 md:overflow-visible md:px-7 md:pb-7 lg:px-10 [&>*]:shrink-0">
+				<div className="flex gap-2 md:flex-wrap" aria-label={uiText("ui.timeFilters")}>
 					{[
 						["all", uiText("ui.all")],
 						["week", uiText("ui.last7Days")],
@@ -107,7 +107,7 @@ export function DashboardFilters({
 							size="sm"
 							aria-pressed={period === id}
 							onClick={() => setPeriod(id)}
-							className={`h-7 rounded-lg px-3 text-xs ${period === id ? "bg-default/60 text-foreground" : "text-muted-foreground"}`}
+							className={`h-9 rounded-lg px-3 text-xs md:h-7 ${period === id ? "bg-default/60 text-foreground" : "text-muted-foreground"}`}
 						>
 							{label}
 						</Button>
@@ -117,7 +117,7 @@ export function DashboardFilters({
 							variant="ghost"
 							size="sm"
 							disabled={busy}
-							className="h-7 gap-2 px-3 text-xs"
+							className="h-9 gap-2 px-3 text-xs md:h-7"
 							aria-label={
 								isRaw
 									? uiText("ui.selectRecordings", "Select recordings")
@@ -137,7 +137,7 @@ export function DashboardFilters({
 						<Button
 							variant="ghost"
 							size="sm"
-							className="h-7 gap-2 px-3 text-xs text-muted-foreground"
+							className="h-9 gap-2 px-3 text-xs text-muted-foreground md:h-7"
 							disabled={busy}
 							onClick={onCleanup}
 						>
@@ -146,7 +146,7 @@ export function DashboardFilters({
 						</Button>
 					)}
 				</div>
-				<div className="ml-auto flex flex-wrap items-center justify-end gap-2">
+				<div className="flex items-center gap-2 md:ml-auto md:flex-wrap md:justify-end">
 					{sortMetadataLoading && (
 						<span role="status" className="text-xs text-muted-foreground">
 							{uiText("ui.readingMediaInfo", "Reading media info…")}

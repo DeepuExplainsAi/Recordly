@@ -292,7 +292,7 @@ export function useDashboardModel({
 						await onOpenProject(entry.path);
 					});
 	const navClass = (active: boolean) =>
-		`h-10 w-full justify-start gap-3 px-3 text-[13px] ${active ? "bg-default/50 font-medium" : "text-muted-foreground"}`;
+		`h-11 justify-start gap-2 px-3 text-[13px] md:w-full md:gap-3 ${active ? "bg-default/50 font-medium" : "text-muted-foreground"}`;
 
 	return {
 		initialLibraryLoading: loading && !libraryResolved && !entries.length,

@@ -87,15 +87,15 @@ export function EditorSidebar({
 		[t],
 	);
 	return (
-		<div className="flex min-h-0 shrink-0 pb-3 pr-2">
+		<div className="order-3 flex min-h-0 flex-1 flex-col pb-2 md:order-none md:flex-none md:shrink-0 md:flex-row md:pb-3 md:pr-2">
 			<nav
 				aria-label={t("settings.sections.title", "Editor tools")}
-				className="flex w-16 shrink-0 flex-col items-center gap-3 py-2.5"
+				className="flex shrink-0 flex-row items-center gap-2 overflow-x-auto px-2 py-1.5 md:w-16 md:flex-col md:gap-3 md:overflow-visible md:px-0 md:py-2.5"
 			>
 				<ToggleButtonGroup
 					orientation="vertical"
 					isDetached
-					className="w-full items-center gap-2"
+					className="max-md:flex-row max-md:flex-nowrap w-full items-center gap-2"
 					selectionMode="single"
 					disallowEmptySelection
 					selectedKeys={panelContent ? [] : [activeSection]}
@@ -124,7 +124,7 @@ export function EditorSidebar({
 						</IconRailTooltip>
 					))}
 				</ToggleButtonGroup>
-				<div className="mt-auto">
+				<div className="ml-auto md:ml-0 md:mt-auto">
 					<IconRailTooltip label={uiText("ui.settings")}>
 						<Button
 							variant="ghost"
@@ -139,7 +139,7 @@ export function EditorSidebar({
 			</nav>
 			<aside
 				aria-label={panelContent ? uiText("ui.clips") : undefined}
-				className="editor-inspector [--text-sm:0.8125rem] [--text-base:0.8125rem] flex w-[320px] min-h-0 flex-col"
+				className="editor-inspector [--text-sm:0.8125rem] [--text-base:0.8125rem] flex min-h-0 w-full flex-1 flex-col px-2 md:w-[320px] md:flex-none md:px-0"
 			>
 				<Card className="app-frame-surface min-h-0 flex-1 gap-0 overflow-hidden rounded-3xl bg-surface p-0 shadow-sm">
 					{panelContent ?? (

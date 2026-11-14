@@ -455,7 +455,7 @@ export function EditorShell(props: Props) {
 								void library.addToTimeline(paths, index);
 						}}
 					>
-						<div className="relative z-10 flex min-h-0 flex-1 pt-3">
+						<div className="relative z-10 contents md:flex md:min-h-0 md:flex-1 md:flex-row md:pt-3">
 							<EditorSidebar
 								panelContent={
 									library.open ? (

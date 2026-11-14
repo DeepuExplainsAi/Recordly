@@ -27,7 +27,7 @@ export function DashboardToolbar({
 	const { locale, t: uiText } = useUiLocale();
 	return (
 		<>
-			<div className="flex items-baseline gap-3 px-7 pt-7 lg:px-10">
+			<div className="flex items-baseline gap-3 px-4 pt-4 md:px-7 md:pt-7 lg:px-10">
 				<h1 className="min-w-0 break-words text-xl font-semibold tracking-tight">
 					{title ?? (isRaw ? uiText("ui.originalRecordings") : uiText("ui.yourProjects"))}
 				</h1>
@@ -41,7 +41,7 @@ export function DashboardToolbar({
 				)}
 			</div>
 			<header
-				className="flex shrink-0 items-center gap-5 px-7 pb-5 pt-4 lg:px-10"
+				className="flex shrink-0 items-center gap-3 px-4 pb-3 pt-3 md:gap-5 md:px-7 md:pb-5 md:pt-4 lg:px-10"
 				style={{ WebkitAppRegion: "drag" } as CSSProperties}
 			>
 				<div
@@ -70,7 +70,7 @@ export function DashboardToolbar({
 						variant="secondary"
 						disabled={busy}
 						onClick={() => void run(onImportFile)}
-						className="h-10 shrink-0 gap-2 text-[13px]"
+						className="h-11 shrink-0 gap-2 text-[13px]"
 					>
 						{action === "refresh" ? (
 							<ArrowClockwise className="size-4" />

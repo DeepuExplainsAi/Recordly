@@ -142,7 +142,7 @@ export function EditorPreviewPanel(props: Props) {
 	const timestampWidth = `${Math.max(6, durationTimestamp.length)}ch`;
 
 	return (
-		<div className="editor-preview-panel flex min-h-0 min-w-0 flex-1 flex-col">
+		<div className="editor-preview-panel order-1 flex h-[38dvh] min-h-0 min-w-0 shrink-0 flex-col md:order-none md:h-auto md:flex-1 md:shrink">
 			<div className="flex min-h-0 flex-1 flex-col">
 				<div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
 					<div className="flex h-10 shrink-0 items-center justify-center gap-3">

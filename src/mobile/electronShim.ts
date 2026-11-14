@@ -415,6 +415,7 @@ const implemented: Api = {
 	},
 	saveExportedVideo: async (data: ArrayBuffer, fileName: string) =>
 		saveToDevice(new Blob([data]), fileName),
+	suggestExportFileName: async (fileName: string) => fileName,
 	setExportInProgress: () => undefined,
 	setHasUnsavedChanges: () => undefined,
 };
