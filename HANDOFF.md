@@ -1,0 +1,23 @@
+# HANDOFF — Recordly → Android APK (fully local, no server)
+
+Repo: fork DeepuExplainsAi/Recordly, branch `mobile-apk`. Upstream: webadderallorg/Recordly (Electron desktop app).
+Goal: working Android APK, mobile-first UI, all processing on-device (no server/cloud cost).
+Rule: after EACH part: commit, push to `fork mobile-apk`, then update this file (Status log) and push again. Don't ask the user; continue to next part.
+
+## Approach
+Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` (Electron IPC, ~166 methods, typed in electron/electron-env.d.ts) is replaced by a shim in `src/mobile/` using web APIs + Capacitor plugins (Filesystem, Preferences). Capture via getDisplayMedia / MediaRecorder (Android foreground service plugin if needed). Export via existing WebCodecs/canvas exporter (src/lib/exporter), no ffmpeg/native helpers, no cloud.
+
+## Parts
+1. [ ] Toolchain: JDK17 + Android SDK + Capacitor installed; env notes below
+2. [ ] Mobile entry (mobile.html/main), Vite mobile config, electronAPI shim (stubs + local storage)
+3. [ ] Capacitor Android project, debug APK builds
+4. [ ] Recording on-device (screen/camera/mic) + save to app storage
+5. [ ] Editor works on touch: responsive layout, touch timeline
+6. [ ] Local export (WebCodecs/MP4/GIF) -> save to gallery/Downloads
+7. [ ] Remove cloud/auth/billing/update/telemetry paths (no server)
+8. [ ] Signed release APK, README, CI workflow
+
+## Status log
+- (start) Repo cloned, forked, branch created. Env: node 24, no JDK/Android SDK initially; root disk ~3.5G free.
+
+## Env notes
