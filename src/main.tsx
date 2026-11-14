@@ -1,3 +1,4 @@
+import "./mobile/installShim";
 import { AppErrorBoundary } from "./components/feedback/AppErrorBoundary";
 import { installFeedbackDiagnostics } from "./lib/feedback/diagnostics";
 import { installPointerFocusGuard } from "./lib/pointerFocus";

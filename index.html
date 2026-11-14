@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/app-icons/recordly-32.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <title>Recordly</title>
+    <script>
+      if (!location.search.includes("windowType")) history.replaceState(null, "", "?windowType=editor&startupView=home");
+    </script>
     <script>
       // Paint the destination shell before the renderer bundle is downloaded or evaluated.
       // Keep recording overlays transparent during their own startup.

@@ -9,7 +9,7 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 
 ## Parts
 1. [x] Toolchain: JDK17 + Android SDK + Capacitor installed; env notes below
-2. [ ] Mobile entry (mobile.html/main), Vite mobile config, electronAPI shim (stubs + local storage)
+2. [x] Mobile entry (mobile.html/main), Vite mobile config, electronAPI shim (stubs + local storage)
 3. [ ] Capacitor Android project, debug APK builds
 4. [ ] Recording on-device (screen/camera/mic) + save to app storage
 5. [ ] Editor works on touch: responsive layout, touch timeline
@@ -29,4 +29,5 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 - node_modules is a symlink-like bind mount to /opt/nm (disk). VM has 480MB RAM: build with NODE_OPTIONS=--max-old-space-size=2200 and a 2G swap at /opt/swap (`fallocate -l 2G /opt/swap; mkswap; swapon`). Re-create after VM rebuild.
 - package.json was trimmed for mobile (removed electron, electron-builder, vite-plugin-electron*, ffmpeg-static, sherpa-onnx, uiohook, capturekit, electron-updater, playwright). Added explicit deps heroui needs (@react-aria/*, etc.) via --legacy-peer-deps. Install: `npm install --ignore-scripts --legacy-peer-deps`.
 - Renderer build: `npx vite build --config vite.mobile.config.ts` -> dist-mobile/ (OK, ~80s, 76MB). Alias stub for @radix-ui/primitive/is-development in src/mobile/.
-- Part 2 in progress: renderer builds. TODO next: src/mobile electronAPI shim + mobile entry.
+- Part 2 done: src/mobile/{fileStore,electronShim,saveToDevice,installShim}.ts. Shim = window.electronAPI backed by IndexedDB (virtual paths /recordly/{recordings,projects,imports,exports}) + localStorage settings; unimplemented methods fall back via Proxy (on* -> no-op unsubscribe, others -> {success:false}). main.tsx imports ./mobile/installShim first. index.html defaults to ?windowType=editor&startupView=home. Build passes (tsc clean for src/mobile).
+- Known gaps for later parts: recording (startNativeScreenRecording etc. -> use getDisplayMedia/MediaRecorder path in src/hooks), saveToDevice is browser download (swap to Capacitor Filesystem/Share), cloud/auth/updates UI still present (Part 7), touch layout (Part 5), HUD/source-selector windows not applicable on mobile.
