@@ -16,8 +16,21 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        release {
+            // Provide RECORDLY_KEYSTORE / RECORDLY_STORE_PASSWORD / RECORDLY_KEY_ALIAS to sign; otherwise the release APK is unsigned.
+            def keystore = System.getenv("RECORDLY_KEYSTORE")
+            if (keystore) {
+                storeFile file(keystore)
+                storePassword System.getenv("RECORDLY_STORE_PASSWORD")
+                keyAlias System.getenv("RECORDLY_KEY_ALIAS") ?: "recordly"
+                keyPassword System.getenv("RECORDLY_STORE_PASSWORD")
+            }
+        }
+    }
     buildTypes {
         release {
+            if (System.getenv("RECORDLY_KEYSTORE")) signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -82,3 +82,4 @@ android/app/build
 android/build
 android/app/src/main/assets/public
 android/capacitor-cordova-android-plugins/build
+*.jks

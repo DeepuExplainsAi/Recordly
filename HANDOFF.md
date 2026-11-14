@@ -14,8 +14,8 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 4. [x] Recording on-device (screen + mic) + save to app storage + export to gallery (camera/webcam overlay NOT done)
 5. [x] Mobile layout (<md breakpoint): Home stacks (top strip nav, full-width list, scrolling filters); editor = preview / timeline / tool-tab strip + panel below; cloud/account/update buttons hidden. Verified at 390x844 in browser. Touch-drag on timeline NOT verified on a device.
 6. [x] Local export verified in browser (MP4 via WebCodecs -> shim finalizeExportedVideo -> saveToDevice). Fix: shim needed suggestExportFileName. Native gallery save (Capacitor Filesystem + MediaStore) NOT tested on a device; WebCodecs in Android WebView untested.
-7. [ ] Remove cloud/auth/billing/update/telemetry paths (no server)
-8. [ ] Signed release APK, README, CI workflow
+7. [x] Cloud UI removed (share link, account, upgrade, updates, feedback, announcements, shared-links tab; Settings hides account/updates/shortcuts/permissions). Code still present but unreachable; Supabase/auth libs still bundled.
+8. [x] Signed release APK (GitHub release v1.0-mobile), README.mobile.md, .github/workflows/android.yml. Keystore: /root/keystore/recordly.jks, password in tfa-vault secrets/recordly-android-keystore (NOT in repo).
 
 ## Status log
 - Part 1 done: toolchain installed.
@@ -39,3 +39,6 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 - Fixes made along the way: pinned framer-motion@^12 (motion needs it), added @radix-ui/react-context; vite.mobile.config has maxParallelFileOps:2 (RAM). JDK17 removed (Capacitor 7 needs JDK21). Swap now 640M at /opt/swap (need >=1G + Node heap 1700 for vite; if OOM re-add 400M at /root/swap2 temporarily).
 - NEXT: Part 7 remove cloud/auth/billing UI (Publish sheet still defaults to 'Create share link'; Settings has account/update items; Shared links nav in Home).
 - Build tip: web build needs ~1.9GB swap+RAM; add temp `fallocate -l 450M /root/swap2` + swapon, remove after. Test export in browser: put a video into IndexedDB 'recordly-mobile' store 'files' at /recordly/recordings/x.mp4, setCurrentRecordingSession, open ?windowType=editor&startupView=editor.
+
+- Release build: `RECORDLY_KEYSTORE=... RECORDLY_STORE_PASSWORD=... ./gradlew assembleRelease -x lintVitalRelease -x lintVitalAnalyzeRelease -x lintVitalReportRelease --no-daemon`. Do NOT keep a swap file on /root while Gradle builds (fills disk).
+- NEXT (optional): test on a real device/emulator; webcam overlay; touch-drag timeline; shrink bundle.
