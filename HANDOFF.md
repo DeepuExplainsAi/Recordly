@@ -8,7 +8,7 @@ Rule: after EACH part: commit, push to `fork mobile-apk`, then update this file 
 Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` (Electron IPC, ~166 methods, typed in electron/electron-env.d.ts) is replaced by a shim in `src/mobile/` using web APIs + Capacitor plugins (Filesystem, Preferences). Capture via getDisplayMedia / MediaRecorder (Android foreground service plugin if needed). Export via existing WebCodecs/canvas exporter (src/lib/exporter), no ffmpeg/native helpers, no cloud.
 
 ## Parts
-1. [ ] Toolchain: JDK17 + Android SDK + Capacitor installed; env notes below
+1. [x] Toolchain: JDK17 + Android SDK + Capacitor installed; env notes below
 2. [ ] Mobile entry (mobile.html/main), Vite mobile config, electronAPI shim (stubs + local storage)
 3. [ ] Capacitor Android project, debug APK builds
 4. [ ] Recording on-device (screen/camera/mic) + save to app storage
@@ -18,6 +18,11 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 8. [ ] Signed release APK, README, CI workflow
 
 ## Status log
+- Part 1 done: toolchain installed.
 - (start) Repo cloned, forked, branch created. Env: node 24, no JDK/Android SDK initially; root disk ~3.5G free.
 
 ## Env notes
+- JDK17 via apt (needs `mkdir -p /usr/share/man/man1; dpkg --configure -a` if apt errors). /opt, apt installs reset on VM rebuild; only /root persists (2G!).
+- Android SDK at /root/android-sdk (platform 34, build-tools 34.0.0). `export ANDROID_HOME=/root/android-sdk`.
+- Put Gradle cache on / : `export GRADLE_USER_HOME=/opt/gradle` (/root too small).
+- gh logged in as DeepuExplainsAi; `gh auth setup-git` done; remote `fork` = DeepuExplainsAi/Recordly.
