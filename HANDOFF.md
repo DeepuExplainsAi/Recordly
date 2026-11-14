@@ -26,3 +26,7 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 - Android SDK at /root/android-sdk (platform 34, build-tools 34.0.0). `export ANDROID_HOME=/root/android-sdk`.
 - Put Gradle cache on / : `export GRADLE_USER_HOME=/opt/gradle` (/root too small).
 - gh logged in as DeepuExplainsAi; `gh auth setup-git` done; remote `fork` = DeepuExplainsAi/Recordly.
+- node_modules is a symlink-like bind mount to /opt/nm (disk). VM has 480MB RAM: build with NODE_OPTIONS=--max-old-space-size=2200 and a 2G swap at /opt/swap (`fallocate -l 2G /opt/swap; mkswap; swapon`). Re-create after VM rebuild.
+- package.json was trimmed for mobile (removed electron, electron-builder, vite-plugin-electron*, ffmpeg-static, sherpa-onnx, uiohook, capturekit, electron-updater, playwright). Added explicit deps heroui needs (@react-aria/*, etc.) via --legacy-peer-deps. Install: `npm install --ignore-scripts --legacy-peer-deps`.
+- Renderer build: `npx vite build --config vite.mobile.config.ts` -> dist-mobile/ (OK, ~80s, 76MB). Alias stub for @radix-ui/primitive/is-development in src/mobile/.
+- Part 2 in progress: renderer builds. TODO next: src/mobile electronAPI shim + mobile entry.
