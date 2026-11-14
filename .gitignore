@@ -75,3 +75,10 @@ aside-react/extracted/
 tests/ui/hero-frame.capture.spec.ts
 tests/ui/hero-capture.config.ts
 dist-mobile
+
+android/local.properties
+android/.gradle
+android/app/build
+android/build
+android/app/src/main/assets/public
+android/capacitor-cordova-android-plugins/build

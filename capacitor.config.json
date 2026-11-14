@@ -1,0 +1,9 @@
+{
+	"appId": "com.recordly.mobile",
+	"appName": "Recordly",
+	"webDir": "dist-mobile",
+	"android": { "allowMixedContent": false },
+	"plugins": {
+		"SplashScreen": { "launchShowDuration": 0 }
+	}
+}

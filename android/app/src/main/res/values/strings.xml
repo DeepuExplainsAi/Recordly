@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Recordly</string>
+    <string name="title_activity_main">Recordly</string>
+    <string name="package_name">com.recordly.mobile</string>
+    <string name="custom_url_scheme">com.recordly.mobile</string>
+</resources>
