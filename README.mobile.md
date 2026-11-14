@@ -13,7 +13,7 @@ npx cap sync android
 cd android && ./gradlew assembleDebug      # JDK 21, Android SDK 35
 ```
 Release signing: set `RECORDLY_KEYSTORE`, `RECORDLY_STORE_PASSWORD` (and optional `RECORDLY_KEY_ALIAS`) then `./gradlew assembleRelease`.
-CI: `.github/workflows/android.yml` (secrets `RECORDLY_KEYSTORE_B64`, `RECORDLY_STORE_PASSWORD` for signed builds).
+CI: `ci/android.yml` (copy to `.github/workflows/` to enable; needs a token with `workflow` scope) (secrets `RECORDLY_KEYSTORE_B64`, `RECORDLY_STORE_PASSWORD` for signed builds).
 
 ## Architecture
 See `HANDOFF.md`. Capacitor 7 WebView hosts the React editor; `src/mobile/electronShim.ts` replaces the Electron IPC with IndexedDB + localStorage; screen capture is a native MediaProjection foreground service.

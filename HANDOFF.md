@@ -15,7 +15,7 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 5. [x] Mobile layout (<md breakpoint): Home stacks (top strip nav, full-width list, scrolling filters); editor = preview / timeline / tool-tab strip + panel below; cloud/account/update buttons hidden. Verified at 390x844 in browser. Touch-drag on timeline NOT verified on a device.
 6. [x] Local export verified in browser (MP4 via WebCodecs -> shim finalizeExportedVideo -> saveToDevice). Fix: shim needed suggestExportFileName. Native gallery save (Capacitor Filesystem + MediaStore) NOT tested on a device; WebCodecs in Android WebView untested.
 7. [x] Cloud UI removed (share link, account, upgrade, updates, feedback, announcements, shared-links tab; Settings hides account/updates/shortcuts/permissions). Code still present but unreachable; Supabase/auth libs still bundled.
-8. [x] Signed release APK (GitHub release v1.0-mobile), README.mobile.md, .github/workflows/android.yml. Keystore: /root/keystore/recordly.jks, password in tfa-vault secrets/recordly-android-keystore (NOT in repo).
+8. [x] Signed release APK (GitHub release v1.0-mobile), README.mobile.md, ci/android.yml (copy to .github/workflows/ to enable; push needs gh token with workflow scope). Keystore: /root/keystore/recordly.jks, password in tfa-vault secrets/recordly-android-keystore (NOT in repo).
 
 ## Status log
 - Part 1 done: toolchain installed.
