@@ -16,6 +16,7 @@ import {
 	RECORDINGS_DIR,
 	safeFileName,
 } from "./fileStore";
+import { OPEN_RECORDER_EVENT } from "./MobileRecorder";
 import { saveToDevice } from "./saveToDevice";
 
 type Api = Record<string, unknown>;
@@ -370,6 +371,12 @@ const implemented: Api = {
 		await Promise.all(paths.map(deleteFile));
 		return { success: true };
 	},
+
+	// --- recording (native screen capture lives in MobileRecorder) ---
+	showRecordingHud: async () => {
+		window.dispatchEvent(new Event(OPEN_RECORDER_EVENT));
+	},
+	setRecordingState: async () => undefined,
 
 	// --- export ---
 	openExportStream: async (options?: { extension?: string }) => {

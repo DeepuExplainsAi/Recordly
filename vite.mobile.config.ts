@@ -19,6 +19,6 @@ export default defineConfig({
 		reportCompressedSize: false,
 		sourcemap: false,
 		chunkSizeWarningLimit: 3000,
-		rollupOptions: { input: path.resolve(__dirname, "index.html") },
+		rollupOptions: { input: path.resolve(__dirname, "index.html"), maxParallelFileOps: 2 },
 	},
 });

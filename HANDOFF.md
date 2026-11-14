@@ -11,7 +11,7 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 1. [x] Toolchain: JDK17 + Android SDK + Capacitor installed; env notes below
 2. [x] Mobile entry (mobile.html/main), Vite mobile config, electronAPI shim (stubs + local storage)
 3. [x] Capacitor Android project, debug APK builds
-4. [ ] Recording on-device (screen/camera/mic) + save to app storage
+4. [x] Recording on-device (screen + mic) + save to app storage + export to gallery (camera/webcam overlay NOT done)
 5. [ ] Editor works on touch: responsive layout, touch timeline
 6. [ ] Local export (WebCodecs/MP4/GIF) -> save to gallery/Downloads
 7. [ ] Remove cloud/auth/billing/update/telemetry paths (no server)
@@ -34,3 +34,7 @@ Capacitor (Android WebView) wraps the Vite/React renderer. `window.electronAPI` 
 - Part 3 done: Capacitor 7 (JDK 21 required by cap android lib; SDK platform 35 + build-tools 35 installed) -> `android/` committed. Debug APK built OK: android/app/build/outputs/apk/debug/app-debug.apk (72MB; copy at ~/apk/recordly-debug.apk). appId com.recordly.mobile, minSdk 23, target 35. Manifest has CAMERA/RECORD_AUDIO/MODIFY_AUDIO_SETTINGS.
 - BUILD RECIPE: `export ANDROID_HOME=/root/android-sdk GRADLE_USER_HOME=/opt/gradle JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64`; `NODE_OPTIONS=--max-old-space-size=2200 npx vite build --config vite.mobile.config.ts && npx cap sync android && cd android && ./gradlew assembleDebug --no-daemon` (android/local.properties needs sdk.dir; gradle.properties has -Xmx768m, daemon off). Gradle wrapper uses -bin dist.
 - DISK WARNING: VM root (/) is ~9.8G and nearly full; /opt/gradle ~1G, /opt/nm ~0.8G. Don't recreate big swap (use 1G). Free space: rm -rf /var/cache/pkg/npm /tmp/* android/app/build. Don't touch /usr/local/install (preinstalled tools).
+- Part 4 done: native Android screen recording. android/.../ScreenRecorderService.java (foreground svc, MediaProjection+MediaRecorder H264/AAC mp4, <=1920px, cache dir) + ScreenRecorderPlugin.java (start/stop/isRecording/deleteFile/saveToGallery -> MediaStore Movies/Recordly) registered in MainActivity. JS: src/mobile/{nativeRecorder,saveRecording,MobileRecorder}.ts(x). "Record new" -> electronAPI.showRecordingHud -> event -> MobileRecorder bottom sheet; Stop -> file copied into IndexedDB /recordly/recordings, setCurrentRecordingSession, reload into editor. saveToDevice.ts writes export to cache via Capacitor Filesystem then saveToGallery. Debug APK rebuilt OK (~/apk/recordly-debug.apk).
+- NOT yet verified on a real device/emulator (none available in the VM). Risks to check first when a device exists: readNativeFile via convertFileSrc(file://...) of cache path (may need FileProvider path or Filesystem.readFile fallback), large recordings in IndexedDB, WebCodecs availability in the Android WebView for export.
+- Fixes made along the way: pinned framer-motion@^12 (motion needs it), added @radix-ui/react-context; vite.mobile.config has maxParallelFileOps:2 (RAM). JDK17 removed (Capacitor 7 needs JDK21). Swap now 640M at /opt/swap (need >=1G + Node heap 1700 for vite; if OOM re-add 400M at /root/swap2 temporarily).
+- NEXT: Part 5 touch-friendly editor layout.
