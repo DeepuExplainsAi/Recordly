@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { isNativeAndroid, ScreenRecorder } from "./nativeRecorder";
 import { storeRecording } from "./saveRecording";
 
@@ -68,9 +69,14 @@ export function MobileRecorder() {
 	if (phase === "closed") return null;
 	const busy = phase === "starting" || phase === "saving";
 
-	return (
+	// Portal to <body> with a top z-index: the dashboard modal sits at z-index 100000
+	// and marks everything outside it inert (react-aria), which blocks every tap here.
+	// data-react-aria-top-layer exempts this sheet from that.
+	return createPortal(
 		<div
-			className="fixed inset-0 z-[1000] flex items-end bg-black/50"
+			data-react-aria-top-layer="true"
+			className="fixed inset-0 flex items-end bg-black/50"
+			style={{ zIndex: 2147483647, pointerEvents: "auto", touchAction: "manipulation" }}
 			onClick={() => phase === "idle" && setPhase("closed")}
 		>
 			<div
@@ -135,6 +141,7 @@ export function MobileRecorder() {
 					)}
 				</div>
 			</div>
-		</div>
+		</div>,
+		document.body,
 	);
 }
