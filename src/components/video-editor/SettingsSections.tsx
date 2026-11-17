@@ -25,7 +25,7 @@ export type SettingsSection =
 	| "updates"
 	| "developer";
 /** Categories that need a desktop OS or the Recordly cloud; the Android build has neither. */
-const UNAVAILABLE_ON_MOBILE: SettingsSection[] = ["account", "updates", "shortcuts", "permissions"];
+const UNAVAILABLE_ON_MOBILE: SettingsSection[] = ["account", "updates", "shortcuts", "permissions", "recording"];
 const SettingsCategoryContext = createContext<SettingsSection | null>(null);
 
 export function useSettingsCategoryActive(category: SettingsSection) {

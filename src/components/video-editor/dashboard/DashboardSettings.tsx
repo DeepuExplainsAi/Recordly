@@ -1,3 +1,4 @@
+import { isNativeAndroid } from "@/mobile/nativeRecorder";
 import { LocalizedError } from "@/components/feedback/LocalizedError";
 import { ErrorReportButton } from "@/components/feedback/ErrorReportButton";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
@@ -300,6 +301,7 @@ export function DashboardSettings({
 						</Button>
 					)}
 				</SettingsCategory>
+				{!isNativeAndroid() && (
 				<SettingsCategory category="general">
 					<header className="dashboard-settings-group dashboard-settings-subgroup">
 						<h2>{t("settings.appPreferences.storage", "Storage")}</h2>
@@ -438,6 +440,7 @@ export function DashboardSettings({
 						</Button>
 					)}
 				</SettingsCategory>
+				)}
 				<SettingsCategory category="general">
 					<AppUpdateSettings />
 				</SettingsCategory>

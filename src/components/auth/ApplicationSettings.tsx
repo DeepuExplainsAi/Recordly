@@ -1,3 +1,4 @@
+import { isNativeAndroid } from "@/mobile/nativeRecorder";
 import { ErrorReportButton } from "@/components/feedback/ErrorReportButton";
 import { Button, Switch } from "@heroui/react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -10,6 +11,7 @@ type PreferencePatch = Parameters<Window["electronAPI"]["setApplicationPreferenc
 /** Preferences describe saved behavior, even while recording temporarily hides the app. */
 export function ApplicationSettings() {
 	const { t } = useI18n();
+	// taskbar / dock options have no meaning on a phone
 	const [preferences, setPreferences] = useState<Preferences | null>(null);
 	const [busy, setBusy] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -95,6 +97,7 @@ export function ApplicationSettings() {
 			</SettingsRow>
 		</Switch>
 	);
+	if (isNativeAndroid()) return null;
 	return (
 		<div className="application-preferences space-y-3">
 			{!preferences && !error && (
